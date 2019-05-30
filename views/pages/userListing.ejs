@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body class="container">
+
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div class="row">
+        <a href="https://api.instagram.com/oauth/authorize/?client_id=f65c530bbe654da28d13d2124e4fd2ba&redirect_uri=http://localhost:8080/handleAuth&response_type=code" target="_blank">
+          <button type="button" class="btn btn-success">Add new user</button>
+        </a>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Profile</th>
+            <th scope="col">Username</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Bio</th>
+            <th scope="col">Website</th>
+            <th scope="col">Is Business</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(function(user) { %>
+          <tr>
+            <th><img src="<%= user.profile_picture %>" class="img-responsive img-circle" /></th>
+            <td><%= user.username %></td>
+            <td><%= user.full_name %></td>
+            <td><%= user.bio %></td>
+            <td><%= user.website %></td>
+            <td><%= user.is_business %></td>
+            <td><a href="/user/<%= user.id %>" target="_blank">
+                <button type="button" class="btn btn-success">Lunch user</button>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+
+</html>

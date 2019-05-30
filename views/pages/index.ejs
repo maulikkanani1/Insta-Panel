@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="row">
+            <% instagram.forEach(function(insta) { %>
+            <div class="instagram-pic col-sm-3">
+
+                <a href="<%= insta.link %>" target="_blank">
+                    <img src="<%= insta.images.standard_resolution.url %>" class="img-responsive">
+                </a>
+
+                <div class="instagram-bar">
+                    <div class="likes">
+                        <span class="glyphicon glyphicon-heart"></span> <%= insta.likes.count %>
+                    </div>
+
+                    <div class="comments">
+                        <span class="glyphicon glyphicon-comment"></span> <%= insta.comments.count %>
+                    </div>
+                </div>
+
+            </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+
+</html>
