@@ -6,6 +6,7 @@ var FormData = require('form-data');
 var ig = require('instagram-node').instagram();
 var localStorage = require('localStorage');
 const MongoClient = require('mongodb').MongoClient;
+var config = require('./config/config');
 let accessToken = "";
 let db;
 MongoClient.connect("mongodb://localhost:27017", { useNewUrlParser: true }, function (err, client) {
@@ -41,8 +42,8 @@ app.get('/authorize', function (req, res) {
 app.get('/handleAuth', function (req, res) {
 	//retrieves the code that was passed along as a query to the '/handleAuth' route and uses this code to construct an access token
 	var bodyFormData = new FormData();
-	bodyFormData.append('client_id', 'f65c530bbe654da28d13d2124e4fd2ba');
-	bodyFormData.append('client_secret', 'c557d1dd0bd043ac835a409222e96a32');
+	bodyFormData.append('client_id', config.client_id);
+	bodyFormData.append('client_secret', config.client_secret);
 	bodyFormData.append('grant_type', 'authorization_code');
 	bodyFormData.append('redirect_uri', redirectUri);
 	bodyFormData.append('code', req.query.code);
